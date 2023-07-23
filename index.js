@@ -31,10 +31,10 @@ function determineWinner(userChoice, computerChoice) {
     (userChoice === "paper" && computerChoice === 'rock')
   ) {
     playerScore++;
-    return `You won this round: Current count is ${playerName}: ${playerScore}: Computer ${computerScore}`;
+    alert (`You won this round: Current count is ${playerName}: ${playerScore}: Computer ${computerScore}`);
   } else {
     computerScore++;
-    return `Computer won this round: Current count is ${playerName}: ${playerScore}: Computer ${computerScore}`;
+    alert (`Computer won this round: Current count is ${playerName}: ${playerScore}: Computer ${computerScore}`);
   }
 }
 
@@ -44,9 +44,8 @@ function playGame() {
   while (playerScore < 3 && computerScore < 3) {
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
-    const result = determineWinner(userChoice, computerChoice);
+    determineWinner(userChoice, computerChoice);
     alert(`Computer move is: ${computerChoice}`);
-    alert(result);
   }
 
   if (playerScore > computerScore) {
@@ -54,7 +53,16 @@ function playGame() {
   } else {
     alert(`Sorry. You lost this game. Count - You: ${playerScore} : Computer: ${computerScore}`);
   }
+
+  if (confirm("Do you want to start a new game?")) {
+    resetGame();
+    playGame();
+  }
 }
 
+function resetGame() {
+  userScore = 0;
+  computerScore = 0;
+}
 
 playGame();
